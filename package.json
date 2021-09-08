@@ -1,0 +1,19 @@
+{
+  "name": "mywalletapp-backend",
+  "version": "1.0.0",
+  "description": "backend for walletapp to handle budget",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yosael/mywalletapp-backend.git"
+  },
+  "author": "Edwin Gutierrez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yosael/mywalletapp-backend/issues"
+  },
+  "homepage": "https://github.com/yosael/mywalletapp-backend#readme"
+}
