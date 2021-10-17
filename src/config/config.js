@@ -9,7 +9,7 @@ module.exports = {
         database: process.env.POSTGRES_DATABASE,
         port: process.env.POSTGRES_PORT
     },
-    server: {
+    serverConfig: {
         port: 3800
     }
 }
