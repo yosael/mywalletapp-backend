@@ -24,7 +24,9 @@ module.exports.create = async (req,res,next) => {
 module.exports.getAllByUser = async (req,res,next) =>{
 
     try {
-        const result = await Account.getAccountByUser(req.params.userId);
+        console.log("params received: ",req.params);
+        console.log("params received2: ",req.params.userId);
+        const result = await Account.getAccountByUser([req.params.userId]);
         console.log("result fetch",result);
         res.status(200).json({valid:true,message:'users loaded',accounts:result.rows});
     } catch (error) {

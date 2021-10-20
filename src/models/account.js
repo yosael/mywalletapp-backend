@@ -3,7 +3,7 @@ const pgdb = require('../util/postgres-database');
 const Account = {};
 
 Account.getAccountByUser = (data) => {
-    console.log("getAccountByUser AccountType");
+    console.log("getAccountByUser");
     const values = [...data];
     return pgdb.query('SELECT * from account where user_id = $1',values);
 }
