@@ -1,25 +1,10 @@
-const { CATEGORIES } = require('../util/dummy');
+const pgdb = require('../util/postgres-database');
 
-module.exports = class Category {
-    constructor(description){
-        this.categoryName = Match.random();
-        this.description = description;
-    }
+const Category = {};
 
-    save(){
-        //save the data dummy
-        CATEGORIES.push(this);
-    }
-
-    static findById(id){
-
-        return CATEGORIES.filter((e)=> e.categoryName === Number(id));
-    }
-
-    static fetchAll(){
-
-        return CATEGORIES;
-    }
-
-
+Category.getAll = () => {
+    console.log("Get All Category");
+    return pgdb.query('SELECT * from category');
 }
+
+module.exports = Category;
