@@ -13,6 +13,7 @@ const currency = require('./src/routes/currency');
 const expense = require('./src/routes/expense');
 const income = require('./src/routes/income');
 const transfer = require('./src/routes/transfer');
+const transaction = require('./src/routes/transaction');
 
 //middleware
 app.use(cors())
@@ -27,6 +28,7 @@ app.use(currency);
 app.use(expense);
 app.use(income);
 app.use(transfer);
+app.use(transaction);
 
 app.use('/',(req,res,next) => {
     res.status(400).json({endpoint:'Invalid Endpoint'});
