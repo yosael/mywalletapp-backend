@@ -5,7 +5,11 @@ const Account = {};
 Account.getAccountByUser = (data) => {
     console.log("getAccountByUser");
     const values = [...data];
-    return pgdb.query('SELECT * from account where user_id = $1',values);
+    return pgdb.query(
+    `select ac.*,type.description as account_type,curr.description as currency from account ac,account_type type,currency curr where 1=1 
+    and ac.account_type_id = type.account_id
+    and ac.currency_id = curr.currency_id
+    and ac.user_id = $1`,values);
 }
 
 Account.create = (data) => {
