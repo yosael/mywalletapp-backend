@@ -24,6 +24,19 @@ Expense.getExpensesReport = (data) => {
 }
 
 
+Expense.getExpensesReportLastGroupByDate = (data) => {
+    const values = [...data];
+    return pgdb.query(`
+        select expe.created_date,sum(expe.amount) as total,curr.description as currency from expense expe, account ac, currency curr where 1=1 
+        and expe.account_id = ac.account_id 
+        and ac.currency_id = curr.currency_id
+        and ac.user_id =$1 
+        and expe.created_date >  CURRENT_DATE - INTERVAL '1 months'
+        group by expe.created_date,curr.description
+    `,values);
+}
+
+
 
 
 module.exports = Expense;

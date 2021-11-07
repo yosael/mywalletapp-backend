@@ -12,3 +12,19 @@ module.exports.getAllByUser = async (req,res,next) =>{
     }
 }
 
+module.exports.getIncomeVsExpenseReport = async (req,res,next) =>{
+
+    try {
+        console.log("params received2: ",req.params.userId);
+        const result = await Transaction.getIncomeVsExpenseReport([req.params.userId]);
+        console.log("result fetch",result);
+        const types =  result.rows.map((item)=> item.type);
+        const totals =  result.rows.map((item)=> parseFloat(item.total));
+        
+
+        res.status(200).json({valid:true,message:'transactions loaded',transactions:{types,totals}});
+    } catch (error) {
+        res.status(400).json({valid:false,message:error});
+    }
+}
+

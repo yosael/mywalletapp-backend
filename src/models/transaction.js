@@ -30,4 +30,27 @@ Transaction.getAllByUser = (data) => {
     return pgdb.query(QUERY,userId);
 }
 
+
+Transaction.getIncomeVsExpenseReport = (data) => {
+
+    console.log("modelGetByUser:",data);
+    const userId = [...data];
+    const QUERY = `
+    select sum(inc.amount) as total,curr.description as currency, 'income' as type from income inc, account ac, currency curr where 1=1 
+    and inc.account_id = ac.account_id 
+    and ac.currency_id = curr.currency_id
+    and ac.user_id =$1 
+    and inc.created_date >  CURRENT_DATE - INTERVAL '1 months'
+    group by curr.description
+    union all
+    select sum(expe.amount) as total,curr.description as currency, 'expense' as type from expense expe, account ac, currency curr where 1=1 
+    and expe.account_id = ac.account_id 
+    and ac.currency_id = curr.currency_id
+    and ac.user_id =$1
+    and expe.created_date >  CURRENT_DATE - INTERVAL '1 months'
+    group by curr.description
+    `;
+    return pgdb.query(QUERY,userId);
+}
+
 module.exports = Transaction;
