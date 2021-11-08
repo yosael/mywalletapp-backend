@@ -10,7 +10,8 @@ module.exports.create = async (req,res,next) => {
         req.body.currencyId,
         req.body.amount,
         req.body.note,
-        req.body.status
+        req.body.status,
+        req.body.isoDateTransaction
     ];
     
     
