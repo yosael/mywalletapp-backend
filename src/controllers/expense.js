@@ -11,7 +11,8 @@ module.exports.create = async (req,res,next) => {
         req.body.amount,
         req.body.note,
         req.body.status,
-        req.body.isoDateTransaction
+        req.body.isoDateTransaction,
+        req.body.transactionTime
     ];
     
     
