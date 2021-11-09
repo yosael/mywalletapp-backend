@@ -16,7 +16,7 @@ Account.getAccountById = (data) => {
     console.log("AccountID");
     const values = [...data];
     return pgdb.query(
-    `select ac.*,curr.description as currency from account ac, currency curr where 1=1
+    `select ac.*,curr.description as currency,curr.currency_id from account ac, currency curr where 1=1
     and ac.currency_id = curr.currency_id and ac.account_id = $1`,values);
 }
 
