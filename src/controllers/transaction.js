@@ -12,6 +12,19 @@ module.exports.getAllByUser = async (req,res,next) =>{
     }
 }
 
+module.exports.getAllByDatesByUser = async (req,res,next) =>{
+
+    try {
+        console.log("params received: ",req.params.userId);
+        console.log("params: ",req.params);
+        const result = await Transaction.getAllByDatesByUser([req.params.userId,req.params.fromDate,req.params.toDate]);
+        console.log("result fetch",result);
+        res.status(200).json({valid:true,message:'transactions loaded',transactions:result.rows});
+    } catch (error) {
+        res.status(400).json({valid:false,message:error});
+    }
+}
+
 module.exports.getLast5ByUser = async (req,res,next) =>{
 
     try {
